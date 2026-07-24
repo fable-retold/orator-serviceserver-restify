@@ -12,6 +12,13 @@ declare class OratorServiceServerRestify extends libOratorServiceServerBase<libR
     /** @type {import('restify').Server} */
     server: import("restify").Server;
     /**
+     * Closes the service server.
+     *
+     * @param {(pError?: Error) => any} [fCallback] - (optional) The callback function to be executed after closing the server.
+     * @return {void}
+     */
+    close(fCallback?: (pError?: Error) => any): void;
+    /**
      * Middleware function for parsing the request body.
      *
      * @param {Record<string, any>} [pOptions] - The options for the body parser.

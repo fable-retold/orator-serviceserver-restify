@@ -52,8 +52,8 @@ class OratorServiceServerRestify extends libOratorServiceServerBase
 	/**
 	 * Closes the service server.
 	 *
-	 * @param {(pError?: Error) => any} fCallback - The callback function to be executed after closing the server.
-	 * @return {any} - The result of the callback function.
+	 * @param {(pError?: Error) => any} [fCallback] - (optional) The callback function to be executed after closing the server.
+	 * @return {void}
 	 */
 	close(fCallback)
 	{
@@ -61,7 +61,10 @@ class OratorServiceServerRestify extends libOratorServiceServerBase
 			{
 				this.Active = false;
 				this.log.info(`RESTIFY server closed.`)
-				return fCallback(pError);
+				if (typeof(fCallback) == 'function')
+				{
+					return fCallback(pError);
+				}
 			});
 	}
 	/*************************************************************************
